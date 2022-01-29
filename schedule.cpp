@@ -43,7 +43,7 @@ public:
 
     //sort nodes by date
     void dateSort() {
-        cout < "I created functionality buahahaha";
+        cout << "I created functionality buahahaha";
     };
     //sort by length;
 
