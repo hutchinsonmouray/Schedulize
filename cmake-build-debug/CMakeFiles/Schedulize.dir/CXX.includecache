@@ -1,0 +1,32 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/15617/CLionProjects/Schedulize/main.cpp
+iostream
+-
+string
+-
+vector
+-
+schedule.cpp
+C:/Users/15617/CLionProjects/Schedulize/schedule.cpp
+schedule.h
+C:/Users/15617/CLionProjects/Schedulize/schedule.h
+
+C:/Users/15617/CLionProjects/Schedulize/schedule.cpp
+iostream
+-
+string
+-
+vector
+-
+schedule.h
+C:/Users/15617/CLionProjects/Schedulize/schedule.h
+
+C:/Users/15617/CLionProjects/Schedulize/schedule.h
+
