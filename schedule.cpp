@@ -43,7 +43,8 @@ void Schedulize::dateSort() {
     getline(file,calenInfo);
     while (getline(file,calenInfo)) { //while there is info to get
         stringstream Data(calenInfo);
-
+        cout<<calenInfo;
+        cout<<token;
        // getline(Data,token,"SUMMARY:");
        // node* temp = new node();
 
