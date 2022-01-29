@@ -5,7 +5,7 @@
 using namespace std;
 
 //node structure --
-struct node {
+struct node { 
     //unsigned int date //due date
 
     //below is all strings
