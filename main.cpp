@@ -4,6 +4,16 @@
 #include "schedule.cpp"
 #include "schedule.h"
 
+//runs a menu of what the user would like to do
+void menu() {
+    //welcome
+    //view class list
+    //choose what to do
+        //sort by date
+        //sort by data & length
+        //sort by course & data?
+}
+
 using namespace std;
 
 int main() {

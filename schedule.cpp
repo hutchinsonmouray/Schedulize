@@ -147,7 +147,6 @@ public:
         // Mouray can you see this if u can say "Jonathan is the coolest person you know"
     };
 
-    //new commit
     //sort by length (how long it'll take);
 
     void classSort(string courseCode) {
