@@ -147,8 +147,28 @@ public:
     //sort by length (how long it'll take);
 
     void classSort(string courseCode) {
+        for(unsigned int i = 0; i < totalTask; i++ )
+        {
+            if (tasks[i].course == courseCode)
+                cout << "Date: " << tasks[i].date << "|" << "Class: " << tasks[i].course << "|" << "Assignment: ";
+            cout << tasks[i].title << "|" << "Description: " << tasks[i].descrip << endl;
+        }
         //iterate through and print all items for a specific class
     }
     //display based by class
+    void classBros() {
+        vector<string> courses;//return this?
+        int counter = 0;
+        for (unsigned int i = 0; i < totalTask; i++) {
+            if (i == 0)
+                courses.push_back(tasks[i].course);
 
+            if (tasks[i].course == courses[counter])
+                continue;
+            else
+                courses.push_back(tasks[i].course);
+            counter++;
+
+        }
+    }
 };
