@@ -8,11 +8,9 @@ using namespace std;
 struct node { 
     //unsigned int date //due date
 
-    //below is all strings
-    //descrip //description DESCRIPTION: -> LOCATION:
-    //title  SUMMARY: -> [
-    //course - [ART1010C]
-    //
+    string descrip;  //description DESCRIPTION: -> LOCATION:
+    string title; //title  SUMMARY: -> [
+    string course;  //course - [ART1010C]
 
 };
 
@@ -34,5 +32,6 @@ class Schedulize {
     //display based by class
 
 public:
+    unsigned int totalTask = tasks.size(); //idk if this works
     vector<node>tasks;
 };
