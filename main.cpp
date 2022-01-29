@@ -9,5 +9,9 @@ using namespace std;
 int main() {
     Schedulize obj;
     obj.tasks; //vector of nodes
-    // obj.showTasks(obj.tasks); tested & works
-    }
+
+    //I hard coded some task, try and sort them
+    obj.calReader(); // testing function
+    obj.dateSort();
+
+}

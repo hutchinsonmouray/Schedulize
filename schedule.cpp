@@ -67,34 +67,31 @@ public:
         ifstream file("hm.ics");
         bool el = file.is_open();
         string data;
-        //getline(file, data);
         string token = "";
         string infiString = "";
         while (file >> token) {
             infiString+=token;
         }
-        cout << infiString;
+        cout << infiString << endl;
         int pos=0;
         //get first token
-        /*while (data[pos] != ' ' && pos<data.length()){
-            token=token+data[pos];
-            pos++;
-        }*/
-
-        while (false) {
+        while (pos < infiString.length()) {
             node* nTask = new node();
             pos++;
             //switch cases for all keyword
-            if (token.find("URL") != string::npos) { //get title and course
+            if (infiString[pos] == '[')
+            {
+                while(infiString[pos] != ']') { //get title and course
+                    token=token+infiString[pos];
+                    pos++;
                 //SUMMARY:PHY2048 - Physics With Calculus 1\, Spring 2022\, 7th period [PHY20
                 //            48]
-               /* while (data[pos] != '[' && pos<data.length()){
-                    token=token+data[pos];
-                    pos++;
-                }*/
-                   cout << token << endl;
+                /* while (data[pos] != '[' && pos<data.length()){
 
 
+                 }*/
+            }
+                cout << token << endl;
                 nTask->title=token;
                 token = "";
                 /*while (data[pos] != ']' && pos<data.length()){
