@@ -10,7 +10,6 @@ struct node {
     string descrip;  //description DESCRIPTION: -> LOCATION:
     string title; //title  SUMMARY: -> [
     string course;  //course - [ART1010C]
-
 };
 
 //assignment class
@@ -33,4 +32,8 @@ class Schedulize {
 public:
     unsigned int totalTask = tasks.size(); //idk if this works
     vector<node>tasks;
+};
+
+void Schedulize::dateSort() {
+    ifstream file("");
 };
