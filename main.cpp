@@ -9,6 +9,4 @@ using namespace std;
 int main() {
     Schedulize obj;
     obj.tasks; //vector of nodes
-    cout<<"welcome mouray";
-
 }
