@@ -9,19 +9,22 @@ using namespace std;
 
 //node structure
 struct node {
-
-    unsigned int date; //due date format 0123 Jan
-    string descrip;  //description DESCRIPTION: -> LOCATION:
-    string title; //title  SUMMARY: -> [
-    string course;  //course - [ART1010C]
-    unsigned int length; //how long it'll take
+    unsigned int date = 0; //due date format 0123 aka Jan 23rd
+    string descrip = "";  //description DESCRIPTION: -> LOCATION:
+    string title = ""; //title  SUMMARY: -> [
+    string course = "";  //course - [ART1010C]
+    unsigned int length = 1; //how long it'll take
 
     node() {
     }
 
-    node(unsigned int _date, string _descrip,string _title,string _course) {
+    node(unsigned int _date, string _descrip,string _title,string _course, unsigned int _length) {
         date = _date;
-        descrip= _descrip; //etc.
+        descrip= _descrip;
+        title = _title;
+        length = _length;
+        course = _course;
+
     }
 };
 
@@ -39,19 +42,29 @@ public:
         hardCodeNodes();
     }
 
+    void showTasks(vector<node> _tasks){
+        for (auto iter = _tasks.begin(); iter != _tasks.end(); ++iter) {
+            cout << iter ->course<<endl;
+            cout << iter ->title <<endl;
+            cout << iter ->descrip<<endl;
+            cout << iter ->date <<endl;
+            cout << iter ->length << endl;
+            cout<<endl;
+        }
+    }; //Done
     //hardcodes samples tasks
     void hardCodeNodes() { //ads 20 tester nodes to sort
-        for (int i=20; i--; i>0) {
-            node* temp = new node(i, "_descrip"+i, "_title"+i ,"_course"+i) ;
+        for (unsigned int i=20; i--; i>0) {
+            node* temp = new node(i, "_descrip", "_title" ,"_course",i+2) ;
             tasks.push_back(*temp);
         }
         totalTask = tasks.size();
-    }
+    } //Done
 
     //reads calender and adds to tasks
     void calReader() {
 
-        ifstream file("text.txt");
+        ifstream file("hm.ics");
         bool el = file.is_open();
         string data;
         while (getline(file, data)) {
@@ -121,7 +134,6 @@ public:
         }
         totalTask = tasks.size();
     }
-
 
     //sort nodes by date
     void dateSort() {
