@@ -5,7 +5,7 @@
 #include <sstream>
 #include "schedule.h"
 using namespace std;
-
+//hi its gg
 //node structure
 struct node {
 
