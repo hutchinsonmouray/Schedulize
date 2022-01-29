@@ -54,15 +54,15 @@ public:
     }; //Done
     //hardcodes samples tasks
     void hardCodeNodes() { //ads 20 tester nodes to sort
-        for (unsigned int i=20; i--; 15>0) {
+        for (unsigned int i=20; i>15; i--) {
             node* temp = new node(i, "_descrip", "_atitle" ,"_course4",i+2) ;
             tasks.push_back(*temp);
         }
-        for (unsigned int i=15; i--; 10>0) {
+        for (unsigned int i=15;i>10;i--) {
             node* temp = new node(i, "_descrip", "_btitle" ,"_course1",i+4) ;
             tasks.push_back(*temp);
         }
-        for (unsigned int i=10; i--; i>0) {
+        for (unsigned int i=10;i>0; i--) {
             node* temp = new node(i, "_descrip", "_ctitle" ,"_course10",i+3) ;
             tasks.push_back(*temp);
         }
@@ -177,6 +177,5 @@ public:
         }
         for (unsigned int i = 0; i < courses.size(); i++)
             cout<< courses[i] << endl;
-
     }
 };
