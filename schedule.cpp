@@ -1,6 +1,8 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <fstream>
+#include <sstream>
 #include "schedule.h"
 using namespace std;
 
@@ -35,5 +37,15 @@ public:
 };
 
 void Schedulize::dateSort() {
-    ifstream file("");
+    ifstream file("hm.ics"); //the calender
+    string calenInfo;
+    string token;
+    getline(file,calenInfo);
+    while (getline(file,calenInfo)) { //while there is info to get
+        stringstream Data(calenInfo);
+
+       // getline(Data,token,"SUMMARY:");
+       // node* temp = new node();
+
+    }
 };
