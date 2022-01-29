@@ -23,7 +23,6 @@ class Schedulize {
         //creates a vector of node
     }
 
-    void dateSort();
     //sort nodes by date
 
     //sort by time & date;
@@ -34,19 +33,22 @@ class Schedulize {
 public:
     unsigned int totalTask = tasks.size(); //idk if this works
     vector<node>tasks;
+
+    void dateSort() {
+        ifstream file("hm.ics"); //the calender
+        string calenInfo;
+        string token;
+        getline(file,calenInfo);
+        while (getline(file,calenInfo)) { //while there is info to get
+            cout<<calenInfo;
+
+            stringstream Data(calenInfo);
+            cout<<token;
+            // getline(Data,token,"SUMMARY:");
+            // node* temp = new node();
+
+        }
 };
 
-void Schedulize::dateSort() {
-    ifstream file("hm.ics"); //the calender
-    string calenInfo;
-    string token;
-    getline(file,calenInfo);
-    while (getline(file,calenInfo)) { //while there is info to get
-        stringstream Data(calenInfo);
-        cout<<calenInfo;
-        cout<<token;
-       // getline(Data,token,"SUMMARY:");
-       // node* temp = new node();
 
-    }
 };

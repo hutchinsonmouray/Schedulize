@@ -25,6 +25,10 @@ string
 -
 vector
 -
+fstream
+-
+sstream
+-
 schedule.h
 C:/Users/15617/CLionProjects/Schedulize/schedule.h
 
