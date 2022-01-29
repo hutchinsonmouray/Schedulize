@@ -30,15 +30,15 @@ class Schedulize {
     }
 
 public:
-    unsigned int totalTask; //idk if this works
+    unsigned int totalTask;
     vector<node>tasks;
 
     //hardcodes samples tasks
     void hardCodeNodes() { //ads 20 tester nodes to sort
         for (int i=0; i++; i<20) {
-            node temp = new node();
+            node* temp = new node();
             //change to nave node(.....) constructor
-            tasks.pushback(temp);
+            tasks.push_back(*temp);
         }
         totalTask = tasks.size();
     }
