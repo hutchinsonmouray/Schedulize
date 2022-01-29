@@ -152,9 +152,10 @@ public:
     void classSort(string courseCode) {
         for(unsigned int i = 0; i < totalTask; i++ )
         {
-            if (tasks[i].course == courseCode)
+            if (tasks[i].course == courseCode) {
                 cout << "Date: " << tasks[i].date << "|" << "Class: " << tasks[i].course << "|" << "Assignment: ";
-            cout << tasks[i].title << "|" << "Description: " << tasks[i].descrip << endl;
+                cout << tasks[i].title << "|" << "Description: " << tasks[i].descrip << endl;
+            }
         }
         //iterate through and print all items for a specific class
     }
@@ -172,6 +173,10 @@ public:
                 courses.push_back(tasks[i].course);
             counter++;
 
+//HI
         }
+        for (unsigned int i = 0; i < courses.size(); i++)
+            cout<< courses[i] << endl;
+
     }
 };

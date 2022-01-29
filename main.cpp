@@ -27,6 +27,7 @@ int main() {
  //   obj.calReader(); // testing function -J
  //   obj.dateSort();// -J
    // obj.showTasks(obj.tasks); //- M
-    obj.classSort("_course"); //- G
+   obj.classBros();
+    obj.classSort("_course1"); //- G
 
 }
