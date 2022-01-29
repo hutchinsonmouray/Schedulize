@@ -27,20 +27,20 @@ struct node {
 //assignment class
 class Schedulize {
 
-    Schedulize(){
-        //calls the inital read when ready?
-        //calReader();
-    }
-
 public:
     unsigned int totalTask;
     vector<node>tasks;
 
+    Schedulize(){
+        //calls the inital read when ready?
+        //calReader();
+        hardCodeNodes();
+    }
+
     //hardcodes samples tasks
     void hardCodeNodes() { //ads 20 tester nodes to sort
-        for (int i=0; i++; i<20) {
-            node* temp = new node();
-            //change to nave node(.....) constructor
+        for (int i=20; i--; i>0) {
+            node* temp = new node(i, "_descrip"+i, "_title"+i ,"_course"+i) ;
             tasks.push_back(*temp);
         }
         totalTask = tasks.size();
@@ -73,7 +73,8 @@ public:
         cout << "I sorted the dates (jk not really lul)";
         // Mouray can you see this if u can say "Jonathan is the coolest person you know"
     };
-    //sort by length;
+
+    //sort by length (how long it'll take);
 
     void classSort(string courseCode) {
         //iterate through and print all items for a specific class
