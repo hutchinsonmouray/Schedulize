@@ -13,15 +13,37 @@ struct node {
     string title; //title  SUMMARY: -> [
     string course;  //course - [ART1010C]
     unsigned int length; //how long it'll take
+
+    node(unsigned int _date, string _descrip,string _title,string _course) {
+        date = _date;
+        descrip= _descrip; //etc.
+    }
+    unsigned int length; //how long it'll take)
 };
 
 //assignment class
 class Schedulize {
 
+    Schedulize(){
+        //calls the inital read when ready?
+        //calReader();
+    }
+
 public:
-    unsigned int totalTask = tasks.size(); //idk if this works
+    unsigned int totalTask; //idk if this works
     vector<node>tasks;
 
+    //hardcodes samples tasks
+    void hardCodeNodes() { //ads 20 tester nodes to sort
+        for (int i=0; i++; i<20) {
+            node temp = new node();
+            //change to nave node(.....) constructor
+            tasks.pushback(temp);
+        }
+        totalTask = tasks.size();
+    }
+
+    //reads calender and adds to tasks
     void calReader() {
         //reader function
         //reads the file
@@ -39,6 +61,7 @@ public:
             // node* temp = new node();
 
         }
+        totalTask = tasks.size();
     }
 
     //sort nodes by date
@@ -47,7 +70,6 @@ public:
         // Mouray can you see this if u can say "Jonathan is the coolest person you know"
     };
     //sort by length;
-
 
     void classSort(string courseCode) {
         //iterate through and print all items for a specific class

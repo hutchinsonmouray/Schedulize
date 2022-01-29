@@ -7,7 +7,7 @@
 
 
 class schedule {
-	//boo
+//do we have to use it??
 };
 
 
