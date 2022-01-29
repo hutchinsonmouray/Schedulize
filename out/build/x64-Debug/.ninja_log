@@ -1,7 +1,0 @@
-# ninja log v5
-4	831	6651276854698024	CMakeFiles/Schedulize.dir/schedule.cpp.obj	42bdc0e7ab34aa87
-0	868	6651276855044733	CMakeFiles/Schedulize.dir/main.cpp.obj	bf7844f3720e0088
-869	1488	6651276860732209	Schedulize.exe	da84bf11122b91d0
-5	628	6651277465699606	CMakeFiles/Schedulize.dir/schedule.cpp.obj	42bdc0e7ab34aa87
-1	659	6651277466043531	CMakeFiles/Schedulize.dir/main.cpp.obj	bf7844f3720e0088
-660	949	6651277468163029	Schedulize.exe	da84bf11122b91d0
