@@ -7,18 +7,21 @@
 using namespace std;
 
 //node structure
-struct node { 
+struct node {
+
     unsigned int date; //due date format 0123 Jan
     string descrip;  //description DESCRIPTION: -> LOCATION:
     string title; //title  SUMMARY: -> [
     string course;  //course - [ART1010C]
     unsigned int length; //how long it'll take
 
+    node() {
+    }
+
     node(unsigned int _date, string _descrip,string _title,string _course) {
         date = _date;
         descrip= _descrip; //etc.
     }
-    unsigned int length; //how long it'll take)
 };
 
 //assignment class
