@@ -43,7 +43,8 @@ public:
 
     //sort nodes by date
     void dateSort() {
-        cout << "I created functionality buahahaha";
+        cout << "I created functionality buahahaha" << endl;
+        cout << "I sorted the dates (jk not really lul)";
         // Mouray can you see this if u can say "Jonathan is the coolest person you know"
     };
     //sort by length;
