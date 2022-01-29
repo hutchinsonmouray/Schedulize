@@ -6,7 +6,6 @@
 #include "schedule.h"
 using namespace std;
 //hi its gg
-
 //node structure
 struct node {
     unsigned int date = 0; //due date format 0123 aka Jan 23rd
@@ -159,7 +158,32 @@ public:
                     }
                     nTask->title = summar.substr(8, summar.length()-1);
                 }
-                // Date
+                if (events[i][j].find("DTSTART:") != string::npos)
+                {
+                    string dayStr;
+                    dayStr = events[i][j].substr(12, 4);
+                    int dayNum = stoi(dayStr);
+                    if (events[i][j][23] == 'Z')
+                    {
+                        if((stoi(events[i][j].substr(17,2)))-5 < 0)
+                        dayNum--;
+                    }
+                    else
+                        cout << events[i][j][23] << "hehexd" << endl;
+                    nTask->date = (unsigned int) dayNum;
+                }
+                if (events[i][j].find("DTSTART;") != string::npos)
+                {
+                    string dayStr;
+                    dayStr = events[i][j].substr(23, 4);
+                    int dayNum = stoi(dayStr);
+                    if (events[i][j][34] == 'Z')
+                    {
+                        if((stoi(events[i][j].substr(17,2)))-5 < 0)
+                        dayNum--;
+                    }
+                    nTask->date = (unsigned int) dayNum;
+                }
                 // Difficulty?
             }
             tasks.push_back(*nTask);
