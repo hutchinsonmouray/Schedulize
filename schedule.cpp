@@ -81,7 +81,7 @@ public:
             //switch cases for all keyword
             if (infiString[pos] == '[')
             {
-                while(infiString[pos] != ']') { //get title and course
+                while(infiString[pos-1] != ']') { //get title and course
                     token=token+infiString[pos];
                     pos++;
                 //SUMMARY:PHY2048 - Physics With Calculus 1\, Spring 2022\, 7th period [PHY20
