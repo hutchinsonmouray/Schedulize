@@ -37,9 +37,9 @@ public:
     vector<node>tasks;
 
     Schedulize(){
-        //calls the inital read when ready?
-        //calReader();
-        hardCodeNodes();
+        //calls the initial read when ready?
+        calReader();
+        //hardCodeNodes();
     }
 
     void showTasks(vector<node> _tasks){
