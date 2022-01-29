@@ -74,47 +74,124 @@ public:
 
         ifstream file("hm.ics");
         bool el = file.is_open();
-        string data;
+        string data = "";
         string token = "";
-        string infiString = "";
-        while (file >> token) {
-            infiString+=token;
+        char c;
+        int count = 0;
+        vector<char> tempChars;
+        while (file.get(c))
+        {
+            tempChars.push_back(c);
         }
-        cout << infiString << endl;
+        for (int i = 0; i < tempChars.size(); i++)
+        {
+            if ((i < tempChars.size() - 1) && tempChars[i] =='\n' && tempChars[i+1] == ' ')
+            {
+                i++;
+                continue;
+            }
+            if (i < tempChars.size())
+                data += tempChars[i];
+        }
+        stringstream fileData(data);
+        vector<vector<string>> events;
+        while (fileData >> token) {
+            vector<string> eventTokens = {};
+
+            if (token == "BEGIN:VEVENT")
+            {
+                while (token != "END:VEVENT" && fileData >> token)
+                {
+                    eventTokens.push_back(token);
+                }
+                events.push_back(eventTokens);
+            }
+            else
+            {
+                while (token != "BEGIN:VEVENT" && fileData >> token)
+                {
+                    eventTokens.push_back(token);
+                }
+                events.push_back(eventTokens);
+            }
+
+        }
+        for (int i = 0; i < events.size(); i++)
+        {
+            node* nTask = new node();
+            for (int j = 0; j < events[i].size(); j++)
+            {
+                // gets course title
+                if (events[i][j].find('[') != string::npos && events[i][j+1].find("URL") != string::npos)
+                {
+                    nTask->course = events[i][j].substr(1, events[i][j].length()-2);
+                }
+                // gets the calendar owner
+                if (events[i][j].find("user") != string::npos)
+                {
+                    string name = "";
+                    while (j < events[i].size()-2)
+                    {
+                        j++;
+                        name = name + events[i][j] + " ";
+                    }
+                    calOwner = name;
+                }
+                // gets description of task
+                if (events[i][j].find("DESCRIPTION:") != string::npos)
+                {
+                    string desc = "";
+                    while (events[i][j].find("LOCATION:") == string::npos && events[i][j].find("SEQUENCE:") == string::npos )
+                    {
+                        desc = desc + events[i][j] + " ";
+                        j++;
+                    }
+                    nTask->descrip = desc.substr(12,desc.length()-1);
+                }
+                // gets task
+                if (events[i][j].find("SUMMARY:") != string::npos)
+                {
+                    string summar = "";
+                    while (events[i][j].find('[') == string::npos)
+                    {
+                        summar = summar + events[i][j] + " ";
+                        j++;
+                    }
+                    nTask->title = summar.substr(8, summar.length()-1);
+                }
+                // Date
+                // Difficulty?
+            }
+            tasks.push_back(*nTask);
+    }
+
         int pos=0;
         //get first token
-        while (pos < infiString.length()) {
-            node* nTask = new node();
-            pos++;
+        /*
+        for (int i = 0; i < events.size(); i++)
+
             //switch cases for all keyword
-            if (infiString[pos] == '[')
-            {
-                while(infiString[pos] != ']') { //get title and course
-                    token=token+infiString[pos];
-                    pos++;
+
                 //SUMMARY:PHY2048 - Physics With Calculus 1\, Spring 2022\, 7th period [PHY20
                 //            48]
-                /* while (data[pos] != '[' && pos<data.length()){
+                while (data[pos] != '[' && pos<data.length()){
 
 
-                 }*/
-            }
-                cout << token << endl;
+                 }
                 nTask->title=token;
                 token = "";
-                /*while (data[pos] != ']' && pos<data.length()){
+                while (data[pos] != ']' && pos<data.length()){
                     token=token+data[pos];
                     pos++;
-                }*/
+                }
                 nTask->course=token;
-            }
             else if (token == "CALNAME:") {
                 // get cal owner by CALNAME:Nigist Feleke Calendar (Canvas) - sample
                 token = "";
-                /*while (data[pos] != '(' && pos<data.length()){
+                while (data[pos] != '(' && pos<data.length()){
                     token=token+data[pos];
                     pos++;
-                }*/
+                }
                 calOwner = token;
                 cout << token << endl;
             }
@@ -138,8 +215,7 @@ public:
                 getline(file, data);
             }
         }
-        totalTask = tasks.size();
-
+        totalTask = tasks.size();*/
     }
 
     //sort nodes by date
