@@ -54,8 +54,16 @@ public:
     }; //Done
     //hardcodes samples tasks
     void hardCodeNodes() { //ads 20 tester nodes to sort
-        for (unsigned int i=20; i--; i>0) {
-            node* temp = new node(i, "_descrip", "_title" ,"_course",i+2) ;
+        for (unsigned int i=20; i--; 15>0) {
+            node* temp = new node(i, "_descrip", "_atitle" ,"_course4",i+2) ;
+            tasks.push_back(*temp);
+        }
+        for (unsigned int i=15; i--; 10>0) {
+            node* temp = new node(i, "_descrip", "_btitle" ,"_course1",i+4) ;
+            tasks.push_back(*temp);
+        }
+        for (unsigned int i=10; i--; i>0) {
+            node* temp = new node(i, "_descrip", "_ctitle" ,"_course10",i+3) ;
             tasks.push_back(*temp);
         }
         totalTask = tasks.size();
@@ -136,7 +144,6 @@ public:
 
     //sort nodes by date
     void dateSort() {
-
         // Mouray can you see this if u can say "Jonathan is the coolest person you know"
     };
 
