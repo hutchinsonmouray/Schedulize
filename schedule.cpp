@@ -67,50 +67,51 @@ public:
         ifstream file("hm.ics");
         bool el = file.is_open();
         string data;
-        while (getline(file, data)) {
-            getline(file, data);
-
-            stringstream _sData(data);
-
-            cout << data;
-        }
-
-
+        //getline(file, data);
         string token = "";
+        string infiString = "";
+        while (file >> token) {
+            infiString+=token;
+        }
+        cout << infiString;
         int pos=0;
         //get first token
-        while (data[pos] != ' ' && pos<data.length()){
+        /*while (data[pos] != ' ' && pos<data.length()){
             token=token+data[pos];
             pos++;
-        }
+        }*/
 
-        while (pos<data.length()) {
+        while (false) {
             node* nTask = new node();
-
+            pos++;
             //switch cases for all keyword
-            if (token == "SUMMARY:") { //get title and course
+            if (token.find("URL") != string::npos) { //get title and course
                 //SUMMARY:PHY2048 - Physics With Calculus 1\, Spring 2022\, 7th period [PHY20
                 //            48]
-                while (data[pos] != '[' && pos<data.length()){
+               /* while (data[pos] != '[' && pos<data.length()){
                     token=token+data[pos];
                     pos++;
-                }
+                }*/
+                   cout << token << endl;
+
+
                 nTask->title=token;
                 token = "";
-                while (data[pos] != ']' && pos<data.length()){
+                /*while (data[pos] != ']' && pos<data.length()){
                     token=token+data[pos];
                     pos++;
-                }
+                }*/
                 nTask->course=token;
             }
             else if (token == "CALNAME:") {
                 // get cal owner by CALNAME:Nigist Feleke Calendar (Canvas) - sample
                 token = "";
-                while (data[pos] != '(' && pos<data.length()){
+                /*while (data[pos] != '(' && pos<data.length()){
                     token=token+data[pos];
                     pos++;
-                }
+                }*/
                 calOwner = token;
+                cout << token << endl;
             }
             else if (token == "DESCRIPTION:"){
                 // DESCRIPTION:[Click here to join Zoom Meeting:945 6006 5340] (https://ufl.zo
@@ -133,45 +134,21 @@ public:
             }
         }
         totalTask = tasks.size();
+
     }
 
     //sort nodes by date
     void dateSort() {
 
-        cout << "I created functionality buahahaha" << endl;
-        cout << "I sorted the dates (jk not really lul)";
         // Mouray can you see this if u can say "Jonathan is the coolest person you know"
     };
 
+    //new commit
     //sort by length (how long it'll take);
 
     void classSort(string courseCode) {
-        for(unsigned int i = 0; i < totalTask; i++ )
-        {
-            if (tasks[i].course == courseCode)
-                cout << "Date: " << tasks[i].date << "|" << "Class: " << tasks[i].course << "|" << "Assignment: ";
-                cout << tasks[i].title << "|" << "Description: " << tasks[i].descrip << endl;
-        }
         //iterate through and print all items for a specific class
     }
     //display based by class
-    void classBros()
-    {
-        vector<string> courses;//return this?
-        int counter = 0;
-        for(unsigned int i = 0; i < totalTask; i++ )
-        {
-            if(i == 0)
-            courses.push_back(tasks[i].course);
-
-            if (tasks[i].course == courses[counter])
-                continue;
-            else
-                courses.push_back(tasks[i].course);
-                counter++;
-
-        }
-
-    }
 
 };
