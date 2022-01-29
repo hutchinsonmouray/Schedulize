@@ -6,8 +6,7 @@ using namespace std;
 
 //node structure --
 struct node { 
-    //unsigned int date //due date
-
+    unsigned int date; //due date format 0123 Jan
     string descrip;  //description DESCRIPTION: -> LOCATION:
     string title; //title  SUMMARY: -> [
     string course;  //course - [ART1010C]
