@@ -4,6 +4,8 @@
 #include <fstream>
 #include <sstream>
 #include "schedule.h"
+#include "visual.h"
+
 using namespace std;
 //hi its gg
 //node structure
@@ -67,6 +69,22 @@ public:
         }
         totalTask = tasks.size();
     } //Done
+
+    void exportToCSV(){
+// opens an existing csv file or creates a new file.
+        std::ofstream file("Schedulize_toDo.csv");
+
+        for (auto iter = tasks.begin(); iter!= tasks.end();iter++) {
+            // Insert the data to file
+            file << iter->title << ", "
+                 << iter->course << ", "
+                 << iter->date << ", "
+                 << iter->length << ", "
+                 << iter->descrip
+                 << "\n";
+        }
+        file.close();
+    }
 
     //reads calender and adds to tasks
     void calReader() {
