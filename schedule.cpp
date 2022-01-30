@@ -78,7 +78,7 @@ public:
             // Insert the data to file
             file << iter->title << ", "
                  << iter->course << ", "
-                 << iter->date << ", "
+                 << iter->date/100 << "/" << iter->date%100 <<  ", "
                  << iter->length << ", "
                  << iter->descrip
                  << "\n";
