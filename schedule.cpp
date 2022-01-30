@@ -299,7 +299,10 @@ public:
         }
 
         tasks.clear();
-        tasks = *newTask;
+        for(auto iter = newTask->begin(); iter != newTask->end(); iter++) {
+            tasks.push_back(*iter);
+        }
+
 
 //iterate through and print all items for a specific class
     }
@@ -313,6 +316,7 @@ public:
             }
         }
         //iterate through and print all items for a specific class
+        return newTask;
     }
 
     //display based by class
