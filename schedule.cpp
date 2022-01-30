@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <algorithm>
 #include <fstream>
 #include <sstream>
 #include "schedule.h"
@@ -37,8 +38,8 @@ public:
 
     Schedulize(){
         //calls the initial read when ready?
-        calReader();
-        //hardCodeNodes();
+        //calReader();
+        hardCodeNodes();
     }
 
     void showTasks(vector<node> _tasks){
@@ -169,7 +170,7 @@ public:
                         dayNum--;
                     }
                     else
-                        cout << events[i][j][23] << "hehexd" << endl;
+                       // cout << events[i][j][23] << "hehexd" << endl;
                     nTask->date = (unsigned int) dayNum;
                 }
                 if (events[i][j].find("DTSTART;") != string::npos)
@@ -245,11 +246,13 @@ public:
     //sort nodes by date
     void dateSort() {
         // Mouray can you see this if u can say "Jonathan is the coolest person you know"
+
     };
 
     //sort by length (how long it'll take);
 
     void classSort(string courseCode) {
+
         for(unsigned int i = 0; i < totalTask; i++ )
         {
             if (tasks[i].course == courseCode) {
@@ -259,23 +262,47 @@ public:
         }
         //iterate through and print all items for a specific class
     }
+    void classSort() {
+        vector<node> newTask
+
+
+             for(unsigned int j = 0; j < classBros().size(); j++)
+             {
+            for (unsigned int i = 0; i < tasks.size(); i++) {
+                if (tasks[i].course == classBros()[j]) {
+                    newTask.push_back(tasks[i]);
+                    //cout << "Date: " << tasks[i].date << "|" <<
+                    "Class: " << newTask[i].course;
+                   // cout << tasks[i].title << "|" << "Description: " << tasks[i].descrip << endl;
+                }
+            }
+        }
+        //iterate through and print all items for a specific class
+    }
     //display based by class
-    void classBros() {
+    bool gee(string f, string s)
+            {
+                return f<s;
+            };
+    vector<string> classBros() {
         vector<string> courses;//return this?
         int counter = 0;
         for (unsigned int i = 0; i < totalTask; i++) {
             if (i == 0)
                 courses.push_back(tasks[i].course);
 
-            if (tasks[i].course == courses[counter])
+            else if (tasks[i].course == courses[counter])
                 continue;
-            else
+            else {
                 courses.push_back(tasks[i].course);
-            counter++;
+                counter++;
+            }
+
 
 //HI
         }
-        for (unsigned int i = 0; i < courses.size(); i++)
-            cout<< courses[i] << endl;
+        //sort(courses.begin(), courses.end(), gee);
+
+            return courses;
     }
 };

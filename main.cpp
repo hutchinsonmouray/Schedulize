@@ -21,13 +21,13 @@ int main() {
     //if using main to test plz tag your work and commit/push often
 
     Schedulize obj;
-    obj.tasks; //vector of nodes
+    //obj.tasks; //vector of nodes
 
     //I hard coded some task, try and sort them
-      obj.calReader(); // testing function -J
+      //obj.calReader(); // testing function -J
  //   obj.dateSort();// -J
-      obj.showTasks(obj.tasks); //- M
+      //obj.showTasks(obj.tasks); //- M
   // obj.classBros();
-    //obj.classSort("_course1"); //- G
+    obj.classSort(); //- G
 
 }
