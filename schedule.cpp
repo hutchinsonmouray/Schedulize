@@ -3,14 +3,9 @@
 #include <vector>
 #include <fstream>
 #include <sstream>
-#include "schedule.h"
-#include "visual.h"
 #include <map>
-#include <ctype.h>
-#include <stdio.h>
 #include<algorithm>
 using namespace std;
-//hi its gg
 //node structure
 struct node {
     unsigned int date = 0; //due date format 0123 aka Jan 23rd
@@ -50,111 +45,6 @@ public:
         //calls the initial read when ready?
         calReader();
         //hardCodeNodes();
-    }
-
-    void showTasks(vector<node> _tasks){
-        for (auto iter = _tasks.begin(); iter != _tasks.end(); ++iter) {
-            cout << iter ->course<<endl;
-            cout << iter ->title <<endl;
-            cout << iter ->descrip<<endl;
-            cout << iter ->date <<endl;
-            cout << iter ->length << endl;
-            cout<<endl;
-        }
-    }; //Done
-    //hardcodes samples tasks
-    void hardCodeNodes() { //ads 20 tester nodes to sort
-        for (unsigned int i=20; i>15; i--) {
-            node* temp = new node(i, "_descrip", "_atitle" ,"_course4",i+2) ;
-            tasks.push_back(*temp);
-        }
-        for (unsigned int i=15;i>10;i--) {
-            node* temp = new node(i, "_descrip", "_btitle" ,"_course1",i+4) ;
-            tasks.push_back(*temp);
-        }
-        for (unsigned int i=10;i>0; i--) {
-            node* temp = new node(i, "_descrip", "_ctitle" ,"_course10",i+3) ;
-            tasks.push_back(*temp);
-        }
-        totalTask = tasks.size();
-    } //Done
-
-    
-        //sort nodes by date (group) - finish later turns map all into one vector Done
-    vector<node> dateSortTotal(map<string, vector<node>> mapOTasks){
-        
-        vector<node> finalSortTasks;
-        
-        //iterate through map and from each vector push onto new larger node * vector
-        for (auto iter = mapOTasks.begin(); iter!=mapOTasks.end(); ++iter) {
-            while (!iter->second.empty()) {
-                finalSortTasks.push_back(iter->second.back());
-                iter->second.pop_back();   
-            }
-        }
-        
-        return finalSortTasks;
-    }
-
-    void classSortf(vector<node>& _tasks){
-        vector<node>* helper = & _tasks;
-        vector<node> newTasks = dateSortTotal ( dateSort(helper));
-        tasks.clear();
-        tasks = newTasks;
-    }
-    
-    map<string, vector<node>> dateSort(vector<node>* _tasks) {
-
-        //creates a map with date  < 1/11 , <Hwk1 , hwk2 , etc >
-        map<string, vector<node>> dailyTasks;
-        for (auto iter = _tasks->rbegin(); iter!=_tasks->rend(); ++iter){
-           string g = iter->course;
-           dailyTasks[g].push_back(*iter);
-        }
-
-        return dailyTasks;
-
-    };
-
-    
-    void exportToCSV(){
-// opens an existing csv file or creates a new file.
-        unsigned int finSt = 0;
-        unsigned int finEnd = 0;
-        stringstream stD(startDate);
-        stringstream endD(endDate);
-        string sDD, eDD, sMM, eMM;
-        getline(stD, sDD, '/');
-        getline(stD, sMM, '/');
-        getline(endD, eDD, '/');
-        getline(endD, eMM, '/');
-        try
-        {
-            finSt = stoi(sDD) + stoi(sMM)*10;
-            finEnd = stoi(eDD) + stoi(eMM)*10;
-        }
-        catch(const invalid_argument& e)
-        {
-        }
-        
-        std::ofstream file("Schedulize_toDo.csv");
-        for (auto iter = tasks.begin(); iter!= tasks.end();iter++) {
-            if (!Zoom && iter->descrip.find("Zoom") != string::npos)
-                continue;
-            if (finSt == 0 && iter->date < finSt)
-                continue;
-            if (finEnd != 0 && iter->date > finEnd)
-                continue;
-
-            // Insert the data to file
-            file << iter->title << ", "
-                 << iter->course << ", "
-                 << iter->date/100 << "/" << iter->date%100 <<  ", "
-                 << iter->length << ", "
-                 << iter->descrip
-                 << "\n";
-        }
-        file.close();
     }
 
     //reads calender and adds to tasks
@@ -265,7 +155,7 @@ public:
                     if (events[i][j][23] == 'Z')
                     {
                         if((stoi(events[i][j].substr(17,2)))-5 < 0)
-                        dayNum--;
+                            dayNum--;
                     }
                     nTask->date = (unsigned int) dayNum;
                 }
@@ -277,24 +167,158 @@ public:
                     if (events[i][j][34] == 'Z')
                     {
                         if((stoi(events[i][j].substr(17,2)))-5 < 0)
-                        dayNum--;
+                            dayNum--;
                     }
                     nTask->date = (unsigned int) dayNum;
                 }
                 // Difficulty?
             }
             if (i != 0)
-            tasks.push_back(*nTask);
-    }
+                tasks.push_back(*nTask);
+        }
 
     }
 
-    //sort nodes by date
-    void dateSort() {
-        // Mouray can you see this if u can say "Jonathan is the coolest person you know"
+    void exportToCSV(){
+// opens an existing csv file or creates a new file.
+        unsigned int finSt = 0;
+        unsigned int finEnd = 0;
+        stringstream stD(startDate);
+        stringstream endD(endDate);
+        string sDD, eDD, sMM, eMM;
+        getline(stD, sDD, '/');
+        getline(stD, sMM, '/');
+        getline(endD, eDD, '/');
+        getline(endD, eMM, '/');
+        try
+        {
+            finSt = stoi(sDD) + stoi(sMM)*10;
+            finEnd = stoi(eDD) + stoi(eMM)*10;
+        }
+        catch(const invalid_argument& e)
+        {
+        }
+
+        std::ofstream file("Schedulize_toDo.csv");
+        for (auto iter = tasks.begin(); iter!= tasks.end();iter++) {
+            if (!Zoom && iter->descrip.find("Zoom") != string::npos)
+                continue;
+            if (finSt == 0 && iter->date < finSt)
+                continue;
+            if (finEnd != 0 && iter->date > finEnd)
+                continue;
+
+            // Insert the data to file
+            file << iter->title << ", "
+                 << iter->course << ", "
+                 << iter->date/100 << "/" << iter->date%100 <<  ", "
+                 << iter->length << ", "
+                 << iter->descrip
+                 << "\n";
+        }
+        file.close();
+    }
+
+    //4 Function below sort by class
+    void classSortf(vector<node>& _tasks){
+        vector<node>* helper = & _tasks;
+        vector<node> newTasks = dateSortTotal ( dateSort(helper));
+        tasks.clear();
+        tasks = newTasks;
+    }
+    //sort nodes by date (group) - finish later turns map all into one vector Done
+    vector<node> dateSortTotal(map<string, vector<node>> mapOTasks){
+        
+        vector<node> finalSortTasks;
+        
+        //iterate through map and from each vector push onto new larger node * vector
+        for (auto iter = mapOTasks.begin(); iter!=mapOTasks.end(); ++iter) {
+            while (!iter->second.empty()) {
+                finalSortTasks.push_back(iter->second.back());
+                iter->second.pop_back();   
+            }
+        }
+        
+        return finalSortTasks;
+    }
+    map<string, vector<node>> dateSort(vector<node>* _tasks) {
+
+        //creates a map with date  < 1/11 , <Hwk1 , hwk2 , etc >
+        map<string, vector<node>> dailyTasks;
+        for (auto iter = _tasks->rbegin(); iter!=_tasks->rend(); ++iter){
+           string g = iter->course;
+           dailyTasks[g].push_back(*iter);
+        }
+
+        return dailyTasks;
+
     };
+    vector<string> classBros() {
+        vector<string> courses;//return this?
+        int counter = 0;
+        for (unsigned int i = 0; i < tasks.size(); i++) {
+            if (i == 0)
+                courses.push_back(tasks[i].course);
+            if (tasks[i].course == courses[counter])
+                continue;
+            else {
+                courses.push_back(tasks[i].course);
+                counter++;
+            }
+
+//HI
+        }
+        //sort(courses.begin(), courses.end(), gee);
+        for (int i = 0; i< courses.size();i++)
+        {
+            cout<<courses[i];
+        }
+        return courses;
+    }
 
 
+    //TEST: hardcodes samples tasks
+    void hardCodeNodes() { //ads 20 tester nodes to sort
+        for (unsigned int i=20; i>15; i--) {
+            node* temp = new node(i, "_descrip", "_atitle" ,"_course4",i+2) ;
+            tasks.push_back(*temp);
+        }
+        for (unsigned int i=15;i>10;i--) {
+            node* temp = new node(i, "_descrip", "_btitle" ,"_course1",i+4) ;
+            tasks.push_back(*temp);
+        }
+        for (unsigned int i=10;i>0; i--) {
+            node* temp = new node(i, "_descrip", "_ctitle" ,"_course10",i+3) ;
+            tasks.push_back(*temp);
+        }
+        totalTask = tasks.size();
+    }
+
+    //for future use?
+    vector<node> smallClassSort(string courseCode) {
+        vector<node> newTask;
+
+
+        for(unsigned int i = 0; i < totalTask; i++ )
+        {
+            if (tasks[i].course == courseCode) {
+                newTask.push_back(tasks[i]);
+            }
+        }
+        return newTask;
+        //iterate through and print all items for a specific class
+        return newTask;
+    } //- gg :)
+    void showTasks(vector<node> _tasks){
+        for (auto iter = _tasks.begin(); iter != _tasks.end(); ++iter) {
+            cout << iter ->course<<endl;
+            cout << iter ->title <<endl;
+            cout << iter ->descrip<<endl;
+            cout << iter ->date <<endl;
+            cout << iter ->length << endl;
+            cout<<endl;
+        }
+    };
     void classSort() {
         vector<node>* newTask = new vector<node>;
 
@@ -320,44 +344,5 @@ public:
 
 //iterate through and print all items for a specific class
     }
-
-    vector<node> smallClassSort(string courseCode) {
-        vector<node> newTask;
-
-
-        for(unsigned int i = 0; i < totalTask; i++ )
-        {
-            if (tasks[i].course == courseCode) {
-                newTask.push_back(tasks[i]);
-            }
-        }
-        return newTask;
-        //iterate through and print all items for a specific class
-        return newTask;
-    }
-
-    //display based by class
-bool compareFunction (std::string a, std::string b) {return a<b;}
-    vector<string> classBros() {
-        vector<string> courses;//return this?
-        int counter = 0;
-        for (unsigned int i = 0; i < tasks.size(); i++) {
-            if (i == 0)
-                courses.push_back(tasks[i].course);
-            if (tasks[i].course == courses[counter])
-                continue;
-            else {
-                courses.push_back(tasks[i].course);
-                counter++;
-            }
-
-//HI
-        }
-        //sort(courses.begin(), courses.end(), gee);
-        for (int i = 0; i< courses.size();i++)
-        {
-            cout<<courses[i];
-        }
-        return courses;
-    }
 };
+
