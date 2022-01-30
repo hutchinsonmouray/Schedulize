@@ -250,40 +250,39 @@ public:
     };
 
     //sort by length (how long it'll take);
+    vector<node> classSort() {
+        vector<node> newTask;
 
-    void classSort(string courseCode) {
-
-        for(unsigned int i = 0; i < totalTask; i++ )
+        for(unsigned int j = 0; j < classBros().size(); j++)
         {
-            if (tasks[i].course == courseCode) {
-                cout << "Date: " << tasks[i].date << "|" << "Class: " << tasks[i].course << "|" << "Assignment: ";
-                cout << tasks[i].title << "|" << "Description: " << tasks[i].descrip << endl;
-            }
-        }
-        //iterate through and print all items for a specific class
-    }
-    void classSort() {
-        vector<node> newTask
-
-
-             for(unsigned int j = 0; j < classBros().size(); j++)
-             {
-            for (unsigned int i = 0; i < tasks.size(); i++) {
-                if (tasks[i].course == classBros()[j]) {
+            for (unsigned int i = 0; i < tasks.size(); i++)
+            {
+                if (tasks[i].course == classBros()[j])
+                {
                     newTask.push_back(tasks[i]);
                     //cout << "Date: " << tasks[i].date << "|" <<
-                    "Class: " << newTask[i].course;
-                   // cout << tasks[i].title << "|" << "Description: " << tasks[i].descrip << endl;
+                    //cout<< "Class: " << newTask[i].course;
+                    // cout << tasks[i].title << "|" << "Description: " << tasks[i].descrip << endl;
                 }
             }
         }
+
+//iterate through and print all items for a specific class
+    }
+
+    vector<node> smallClassSort(string courseCode) {
+        vector<node> newTask;
+        for(unsigned int i = 0; i < totalTask; i++ )
+        {
+            if (tasks[i].course == courseCode) {
+                newTask.push_back(tasks[i]);
+            }
+        }
         //iterate through and print all items for a specific class
     }
+
     //display based by class
-    bool gee(string f, string s)
-            {
-                return f<s;
-            };
+
     vector<string> classBros() {
         vector<string> courses;//return this?
         int counter = 0;
