@@ -3,6 +3,7 @@
 #include <vector>
 #include <fstream>
 #include <sstream>
+#include <map>
 #include "schedule.h"
 #include "visual.h"
 
@@ -307,10 +308,10 @@ public:
     //sort by length (how long it'll take);
 
     //sort by length (how long it'll take);
-    vector<node> classSort() {
+    void classSort() {
         vector<node> newTask;
 
-        for(unsigned int j = 0; j < classBros().size(); j++)
+        for (unsigned int j = 0; j < classBros().size(); j++)
         {
             for (unsigned int i = 0; i < tasks.size(); i++)
             {
@@ -323,42 +324,45 @@ public:
                 }
             }
         }
-
+            for (unsigned int i = 0; i < tasks.size(); i++)
+            {
+                tasks[i] = newTask[i];
+            }
 //iterate through and print all items for a specific class
-    }
 
-    vector<node> smallClassSort(string courseCode) {
-        vector<node> newTask;
-        for(unsigned int i = 0; i < totalTask; i++ )
-        {
-            if (tasks[i].course == courseCode) {
-                newTask.push_back(tasks[i]);
+    }
+        vector<node> smallClassSort(string courseCode) {
+            vector<node> newTask;
+            for (unsigned int i = 0; i < totalTask; i++) {
+                if (tasks[i].course == courseCode) {
+                    newTask.push_back(tasks[i]);
+                }
             }
+            //iterate through and print all items for a specific class
         }
-        //iterate through and print all items for a specific class
-    }
 
-    //display based by class
+        //display based by class
 
-    vector<string> classBros() {
-        vector<string> courses;//return this?
-        int counter = 0;
-        for (unsigned int i = 0; i < totalTask; i++) {
-            if (i == 0)
-                courses.push_back(tasks[i].course);
+        vector<string> classBros() {
+            vector<string> courses;//return this?
+            int counter = 0;
+            for (unsigned int i = 0; i < totalTask; i++) {
+                if (i == 0)
+                    courses.push_back(tasks[i].course);
 
-            else if (tasks[i].course == courses[counter])
-                continue;
-            else {
-                courses.push_back(tasks[i].course);
-                counter++;
-            }
+                else if (tasks[i].course == courses[counter])
+                    continue;
+                else {
+                    courses.push_back(tasks[i].course);
+                    counter++;
+                }
 
 
 //HI
-        }
-        //sort(courses.begin(), courses.end(), gee);
+            }
+            //sort(courses.begin(), courses.end(), gee);
 
-        return courses;
+            return courses;
+
     }
 };

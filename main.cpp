@@ -21,6 +21,10 @@ using namespace std;
 int main() {
 
     //if using main to test plz tag your work and commit/push often
+    ifstream file("Schedulize your Calender!.txt");
+    string read;
+
+
 
     Schedulize obj;
     obj.tasks; //vector of nodes
