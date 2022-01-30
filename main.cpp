@@ -101,7 +101,8 @@ int main() {
  //   obj.dateSort();// -J
       obj.showTasks(obj.tasks); //- M
   // obj.classBros();
-    //obj.classSort("_course1"); //- G
-    obj.exportToCSV(); //-M
+  if (obj.Class)
+    obj.classSort();//- G
 
+    obj.exportToCSV(); //-M
 }
