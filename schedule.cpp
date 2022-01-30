@@ -70,6 +70,37 @@ public:
         totalTask = tasks.size();
     } //Done
 
+    
+        //sort nodes by date (group) - finish later turns map all into one vector Done
+    vector<node> dateSortTotal(map<unsigned int, vector<node>> mapOTasks){
+        
+        vector<node> finalSortTasks;
+        
+        //iterate through map and from each vector push onto new larger node * vector
+        for (auto iter = mapOTasks.begin(); iter!=mapOTasks.end(); ++iter) {
+            while (!iter->second.empty()) {
+                finalSortTasks.push_back(iter->second.back());
+                iter->second.pop_back();   
+            }
+        }
+        
+        return finalSortTasks;
+    }
+    
+    map<unsigned int, vector<node>> dateSort(vector<node>* _tasks) {
+
+        //creates a map with date  < 1/11 , <Hwk1 , hwk2 , etc >
+        map<unsigned int, vector<node>> dailyTasks;
+        for (auto iter = _tasks->begin(); iter!=_tasks->end(); ++iter){
+            unsigned int g = iter->date;
+           dailyTasks[g].push_back(*iter);
+        }
+
+        return dailyTasks;
+
+    };
+
+    
     void exportToCSV(){
 // opens an existing csv file or creates a new file.
         std::ofstream file("Schedulize_toDo.csv");
