@@ -13,11 +13,11 @@ Type Here: 1
 
 Would  you like to sort by class? (1 for yes, 0 for no)
 
-Type Here: 1
+Type Here: 0
 
 Start Date (1/12/2022)
 
-Type Here: 1/23/2022
+Type Here: 1/17/2022
 
 End Date (4/23/2022)
 

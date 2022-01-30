@@ -8,7 +8,7 @@ int main() {
 
     Schedulize obj;
     obj.tasks;
-    ifstream file("Schedulize your Calender!.txt");
+    ifstream file("Schedulize your Calendar!.txt");
     string read;
     getline(file, read);
     char c;

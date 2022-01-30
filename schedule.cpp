@@ -47,10 +47,10 @@ public:
         //hardCodeNodes();
     }
 
-    //reads calender and adds to tasks
+    //reads calendar and adds to tasks
     void calReader() {
 
-        ifstream file("hm.ics");
+        ifstream file("calendar.ics");
         string data = "";
         string token = "";
         char c;
@@ -185,14 +185,14 @@ public:
         stringstream stD(startDate);
         stringstream endD(endDate);
         string sDD, eDD, sMM, eMM;
-        getline(stD, sDD, '/');
         getline(stD, sMM, '/');
-        getline(endD, eDD, '/');
+        getline(stD, sDD, '/');
         getline(endD, eMM, '/');
+        getline(endD, eDD, '/');
         try
         {
-            finSt = stoi(sDD) + stoi(sMM)*10;
-            finEnd = stoi(eDD) + stoi(eMM)*10;
+            finSt = stoi(sDD) + stoi(sMM)*100;
+            finEnd = stoi(eDD) + stoi(eMM)*100;
         }
         catch(const invalid_argument& e)
         {
@@ -209,13 +209,13 @@ public:
              <<  "Course, "
              <<  "Date, "
              <<  "Difficulty, "
-             << "description"
+             << "Description"
              << "\n";
 
         for (auto iter = tasks.begin(); iter!= tasks.end();iter++) {
             if (!Zoom && iter->descrip.find("Zoom") != string::npos)
                 continue;
-            if (finSt == 0 && iter->date < finSt)
+            if (finSt != 0 && iter->date < finSt)
                 continue;
             if (finEnd != 0 && iter->date > finEnd)
                 continue;
