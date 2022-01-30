@@ -184,6 +184,7 @@ public:
                     }
                     nTask->title = summar.substr(8, summar.length()-1);
                     j-=tempCount;
+                    // course fix
                 }
                 if (events[i][j].find("DTSTART:") != string::npos)
                 {
