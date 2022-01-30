@@ -257,57 +257,6 @@ public:
             tasks.push_back(*nTask);
     }
 
-        int pos=0;
-        //get first token
-        /*
-        for (int i = 0; i < events.size(); i++)
-
-            //switch cases for all keyword
-
-                //SUMMARY:PHY2048 - Physics With Calculus 1\, Spring 2022\, 7th period [PHY20
-                //            48]
-                while (data[pos] != '[' && pos<data.length()){
-
-
-                 }
-                nTask->title=token;
-                token = "";
-                while (data[pos] != ']' && pos<data.length()){
-                    token=token+data[pos];
-                    pos++;
-                }
-                nTask->course=token;
-            else if (token == "CALNAME:") {
-                // get cal owner by CALNAME:Nigist Feleke Calendar (Canvas) - sample
-                token = "";
-                while (data[pos] != '(' && pos<data.length()){
-                    token=token+data[pos];
-                    pos++;
-                }
-                calOwner = token;
-                cout << token << endl;
-            }
-            else if (token == "DESCRIPTION:"){
-                // DESCRIPTION:[Click here to join Zoom Meeting:945 6006 5340] (https://ufl.zo
-                //            om.us/j/94560065340?pwd=U1F4dG9NMk93U3lrSXA5aVY2d2FWZz09)
-                //            LOCATION:
-
-                string tempTok = "";
-                while (token != "LOCATION:" && pos<data.length()){
-                    tempTok = tempTok + token;
-                }
-                nTask->descrip = tempTok;
-            }
-            else if (token == "END:VEVENT"){
-                // END:VEVENT --> create the node & send it
-                tasks.push_back(*nTask);//adds this to our list of tasks
-                token = "";
-            }
-            else { //move to next line
-                getline(file, data);
-            }
-        }
-        totalTask = tasks.size();*/
     }
 
     //sort nodes by date
@@ -315,9 +264,7 @@ public:
         // Mouray can you see this if u can say "Jonathan is the coolest person you know"
     };
 
-    //sort by length (how long it'll take);
 
-    //sort by length (how long it'll take);
     vector<node> classSort() {
         vector<node> newTask;
 
@@ -334,6 +281,8 @@ public:
                 }
             }
         }
+
+        tasks = newTask;
 
 //iterate through and print all items for a specific class
     }
@@ -364,7 +313,6 @@ public:
                 courses.push_back(tasks[i].course);
                 counter++;
             }
-
 
 //HI
         }
