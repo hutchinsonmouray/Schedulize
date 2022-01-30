@@ -1,0 +1,51 @@
+Welcome to Schedulize!!
+
+We are here to make your hectic schedule easier. 
+Please type the exact answers to ensure that we can help you out!
+
+Would you like us to include tasks with Zoom Links? (1 for yes, 0 for no)
+
+Type Here:
+
+Would  you like to sort by date? (1 for yes, 0 for no)
+
+Type Here:
+
+Would  you like to sort by class? (1 for yes, 0 for no)
+
+Type Here:
+
+Start Date (1/12/2022)
+
+Type Here:
+
+End Date (4/23/2022)
+
+Type Here:
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Thank you! Follow the following steps.
+1. Save this file.
+2. Click the executable
+3. Check the folder for your customized excel sheet!
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Sample Submission *This is a sample for you to look at*
+
+Would you like us to include tasks with Zoom Links? (1 for yes, 0 for no)
+
+Type Here:  1
+
+Would  you like to sort by date? (1 for yes, 0 for no)
+
+Type Here:  0
+
+Would  you like to sort by class? (1 for yes, 0 for no)
+
+Start Date (1/12/2022)
+
+Type Here:  3/4/2020
+
+End Date (4/23/2022)
+
+Type Here:  4/4/2022
