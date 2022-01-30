@@ -107,6 +107,11 @@ public:
                 i++;
                 continue;
             }
+            if ((i < tempChars.size() - 1) && tempChars[i] =='\\' && tempChars[i+1] == ',')
+            {
+                i++;
+                continue;
+            }
             if (i < tempChars.size())
                 data += tempChars[i];
         }
@@ -142,9 +147,10 @@ public:
                 if (events[i][j].find('[') != string::npos && events[i][j+1].find("URL") != string::npos)
                 {
                     nTask->course = events[i][j].substr(1, events[i][j].length()-2);
+                    //cout << events[i][j].substr(1, events[i][j].length()-2) << endl;
                 }
                 // gets the calendar owner
-                if (events[i][j].find("user") != string::npos)
+                if (events[i][j].find("user") != string::npos && i == 0)
                 {
                     string name = "";
                     while (j < events[i].size()-2)
@@ -169,12 +175,15 @@ public:
                 if (events[i][j].find("SUMMARY:") != string::npos)
                 {
                     string summar = "";
+                    int tempCount = 0;
                     while (events[i][j].find('[') == string::npos)
                     {
                         summar = summar + events[i][j] + " ";
                         j++;
+                        tempCount++;
                     }
                     nTask->title = summar.substr(8, summar.length()-1);
+                    j-=tempCount;
                 }
                 if (events[i][j].find("DTSTART:") != string::npos)
                 {
@@ -186,8 +195,6 @@ public:
                         if((stoi(events[i][j].substr(17,2)))-5 < 0)
                         dayNum--;
                     }
-                    else
-                        cout << events[i][j][23] << "hehexd" << endl;
                     nTask->date = (unsigned int) dayNum;
                 }
                 if (events[i][j].find("DTSTART;") != string::npos)
