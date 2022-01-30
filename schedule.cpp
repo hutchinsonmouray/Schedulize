@@ -281,7 +281,7 @@ public:
     };
 
 
-    vector<node> classSort() {
+    void classSort() {
         vector<node> newTask;
 
         for(unsigned int j = 0; j < classBros().size(); j++)
