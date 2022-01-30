@@ -1,5 +1,5 @@
 # Schedulize!
-Need to re-arrange you calender?? then Schedulize it!
+Need to re-arrange you calendar?? then Schedulize it!
 
 Roles 
 
