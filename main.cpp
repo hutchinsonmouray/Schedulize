@@ -3,6 +3,8 @@
 #include <vector>
 #include "schedule.cpp"
 #include "schedule.h"
+#include "visual.h"
+
 
 //runs a menu of what the user would like to do
 void menu() {
@@ -21,13 +23,14 @@ int main() {
     //if using main to test plz tag your work and commit/push often
 
     Schedulize obj;
-    //obj.tasks; //vector of nodes
+    obj.tasks; //vector of nodes
 
     //I hard coded some task, try and sort them
-      //obj.calReader(); // testing function -J
+    //  obj.calReader(); // testing function -J
  //   obj.dateSort();// -J
-      //obj.showTasks(obj.tasks); //- M
+      obj.showTasks(obj.tasks); //- M
   // obj.classBros();
-    obj.classSort(); //- G
+    //obj.classSort("_course1"); //- G
+    obj.exportToCSV(); //-M
 
 }
