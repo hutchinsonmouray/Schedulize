@@ -282,7 +282,7 @@ public:
 
 
     void classSort() {
-        vector<node> newTask;
+        vector<node>* newTask = new vector<node>;
 
         for(unsigned int j = 0; j < classBros().size(); j++)
         {
@@ -290,7 +290,7 @@ public:
             {
                 if (tasks[i].course == classBros()[j])
                 {
-                    newTask.push_back(tasks[i]);
+                    newTask->push_back(tasks[i]);
                     //cout << "Date: " << tasks[i].date << "|" <<
                     //cout<< "Class: " << newTask[i].course;
                     // cout << tasks[i].title << "|" << "Description: " << tasks[i].descrip << endl;
@@ -298,7 +298,8 @@ public:
             }
         }
 
-        tasks = newTask;
+        tasks.clear();
+        tasks = *newTask;
 
 //iterate through and print all items for a specific class
     }
