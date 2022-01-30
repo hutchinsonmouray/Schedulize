@@ -86,24 +86,7 @@ int main() {
     obj.endDate = read;
 
 
-
-
-
-
-
-
-
-
-    //Schedulize obj;
-   // obj.tasks; //vector of nodes
-
-    //I hard coded some task, try and sort them
-    //  obj.calReader(); // testing function -J
- //   obj.dateSort();// -J
-      obj.showTasks(obj.tasks); //- M
-  // obj.classBros();
   if (obj.Class)
-      //obj.classBros();
     obj.classSortf(obj.tasks);//- G
 
     obj.exportToCSV(); //-M

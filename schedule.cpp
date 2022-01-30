@@ -107,7 +107,7 @@ public:
 
         //creates a map with date  < 1/11 , <Hwk1 , hwk2 , etc >
         map<string, vector<node>> dailyTasks;
-        for (auto iter = _tasks->begin(); iter!=_tasks->end(); ++iter){
+        for (auto iter = _tasks->rbegin(); iter!=_tasks->rend(); ++iter){
            string g = iter->course;
            dailyTasks[g].push_back(*iter);
         }
@@ -337,7 +337,7 @@ public:
     }
 
     //display based by class
-    bool compareFunction (std::string a, std::string b) {return a<b;}
+bool compareFunction (std::string a, std::string b) {return a<b;}
     vector<string> classBros() {
         vector<string> courses;//return this?
         int counter = 0;

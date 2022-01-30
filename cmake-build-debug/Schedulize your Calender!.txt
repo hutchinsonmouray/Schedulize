@@ -9,11 +9,11 @@ Type Here:
 
 Would  you like to sort by date? (1 for yes, 0 for no)
 
-Type Here:
+Type Here: 1
 
 Would  you like to sort by class? (1 for yes, 0 for no)
 
-Type Here:
+Type Here: 1
 
 Start Date (1/12/2022)
 
