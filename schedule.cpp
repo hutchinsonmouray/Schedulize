@@ -51,7 +51,6 @@ public:
     void calReader() {
 
         ifstream file("hm.ics");
-        bool el = file.is_open();
         string data = "";
         string token = "";
         char c;
@@ -199,7 +198,20 @@ public:
         {
         }
 
+
         std::ofstream file("Schedulize_toDo.csv");
+
+        file <<"Welcome "<< calOwner << "\n";
+        file << "Thank you for using Schedulize! Your customized schedule is below: \n";
+        file << "\n";
+
+        file << "Assignment, "
+             <<  "Course, "
+             <<  "Date, "
+             <<  "Difficulty, "
+             << "description"
+             << "\n";
+
         for (auto iter = tasks.begin(); iter!= tasks.end();iter++) {
             if (!Zoom && iter->descrip.find("Zoom") != string::npos)
                 continue;
