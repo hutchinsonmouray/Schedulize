@@ -41,8 +41,8 @@ public:
     bool Zoom = false;
     bool Date = true;
     bool Class = true;
-    string startDate;
-    string endDate;
+    string startDate = "0/0";
+    string endDate = "0/0";
 
 
     Schedulize(){
@@ -111,12 +111,27 @@ public:
     
     void exportToCSV(){
 // opens an existing csv file or creates a new file.
-        startDate.erase(remove(startDate.begin(), startDate.end(), '/'), startDate.end());
-        endDate.erase(remove(endDate.begin(), endDate.end(), '/'), endDate.end());
+        unsigned int finSt = 0;
+        unsigned int finEnd = 0;
+        stringstream stD(startDate);
+        stringstream endD(endDate);
+        string sDD, eDD, sMM, eMM;
+        getline(stD, sDD, '/');
+        getline(stD, sMM, '/');
+        getline(endD, eDD, '/');
+        getline(endD, eMM, '/');
+        finSt = stoi(sDD) + stoi(sMM)*10;
+        finEnd = stoi(eDD) + stoi(eMM)*10;
+
         std::ofstream file("Schedulize_toDo.csv");
         for (auto iter = tasks.begin(); iter!= tasks.end();iter++) {
             if (!Zoom && iter->descrip.find("Zoom") != string::npos)
                 continue;
+            if (finSt == 0 && iter->date < finSt)
+                continue;
+            if (finEnd != 0 && iter->date > finEnd)
+                continue;
+
             // Insert the data to file
             file << iter->title << ", "
                  << iter->course << ", "
@@ -254,6 +269,7 @@ public:
                 }
                 // Difficulty?
             }
+            if (i != 0)
             tasks.push_back(*nTask);
     }
 
