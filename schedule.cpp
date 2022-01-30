@@ -6,7 +6,8 @@
 #include "schedule.h"
 #include "visual.h"
 #include <map>
-
+#include <map>
+#include<algorithm>
 using namespace std;
 //hi its gg
 //node structure
@@ -37,6 +38,12 @@ public:
     string calOwner;
     unsigned int totalTask;
     vector<node>tasks;
+    bool Zoom = false;
+    bool Date = true;
+    bool Class = true;
+    string startDate;
+    string endDate;
+
 
     Schedulize(){
         //calls the initial read when ready?
@@ -104,9 +111,12 @@ public:
     
     void exportToCSV(){
 // opens an existing csv file or creates a new file.
+        startDate.erase(remove(startDate.begin(), startDate.end(), '/'), startDate.end());
+        endDate.erase(remove(endDate.begin(), endDate.end(), '/'), endDate.end());
         std::ofstream file("Schedulize_toDo.csv");
-
         for (auto iter = tasks.begin(); iter!= tasks.end();iter++) {
+            if (!Zoom && iter->descrip.find("Zoom") != string::npos)
+                continue;
             // Insert the data to file
             file << iter->title << ", "
                  << iter->course << ", "
