@@ -4,6 +4,8 @@
 #include <fstream>
 #include <sstream>
 #include "schedule.h"
+#include "visual.h"
+
 using namespace std;
 //hi its gg
 //node structure
@@ -37,8 +39,8 @@ public:
 
     Schedulize(){
         //calls the initial read when ready?
-        //calReader();
-        hardCodeNodes();
+        calReader();
+        //hardCodeNodes();
     }
 
     void showTasks(vector<node> _tasks){
@@ -68,6 +70,22 @@ public:
         totalTask = tasks.size();
     } //Done
 
+    void exportToCSV(){
+// opens an existing csv file or creates a new file.
+        std::ofstream file("Schedulize_toDo.csv");
+
+        for (auto iter = tasks.begin(); iter!= tasks.end();iter++) {
+            // Insert the data to file
+            file << iter->title << ", "
+                 << iter->course << ", "
+                 << iter->date/100 << "/" << iter->date%100 <<  ", "
+                 << iter->length << ", "
+                 << iter->descrip
+                 << "\n";
+        }
+        file.close();
+    }
+
     //reads calender and adds to tasks
     void calReader() {
 
@@ -85,6 +103,11 @@ public:
         for (int i = 0; i < tempChars.size(); i++)
         {
             if ((i < tempChars.size() - 1) && tempChars[i] =='\n' && tempChars[i+1] == ' ')
+            {
+                i++;
+                continue;
+            }
+            if ((i < tempChars.size() - 1) && tempChars[i] =='\\' && tempChars[i+1] == ',')
             {
                 i++;
                 continue;
@@ -124,9 +147,10 @@ public:
                 if (events[i][j].find('[') != string::npos && events[i][j+1].find("URL") != string::npos)
                 {
                     nTask->course = events[i][j].substr(1, events[i][j].length()-2);
+                    //cout << events[i][j].substr(1, events[i][j].length()-2) << endl;
                 }
                 // gets the calendar owner
-                if (events[i][j].find("user") != string::npos)
+                if (events[i][j].find("user") != string::npos && i == 0)
                 {
                     string name = "";
                     while (j < events[i].size()-2)
@@ -151,12 +175,16 @@ public:
                 if (events[i][j].find("SUMMARY:") != string::npos)
                 {
                     string summar = "";
+                    int tempCount = 0;
                     while (events[i][j].find('[') == string::npos)
                     {
                         summar = summar + events[i][j] + " ";
                         j++;
+                        tempCount++;
                     }
                     nTask->title = summar.substr(8, summar.length()-1);
+                    j-=tempCount;
+                    // course fix
                 }
                 if (events[i][j].find("DTSTART:") != string::npos)
                 {
@@ -168,8 +196,6 @@ public:
                         if((stoi(events[i][j].substr(17,2)))-5 < 0)
                         dayNum--;
                     }
-                    else
-                       // cout << events[i][j][23] << "hehexd" << endl;
                     nTask->date = (unsigned int) dayNum;
                 }
                 if (events[i][j].find("DTSTART;") != string::npos)
@@ -245,62 +271,37 @@ public:
     //sort nodes by date
     void dateSort() {
         // Mouray can you see this if u can say "Jonathan is the coolest person you know"
-
     };
 
     //sort by length (how long it'll take);
-    vector<node> classSort() {
-        vector<node> newTask;
 
-        for(unsigned int j = 0; j < classBros().size(); j++)
-        {
-            for (unsigned int i = 0; i < tasks.size(); i++)
-            {
-                if (tasks[i].course == classBros()[j])
-                {
-                    newTask.push_back(tasks[i]);
-                    //cout << "Date: " << tasks[i].date << "|" <<
-                    //cout<< "Class: " << newTask[i].course;
-                    // cout << tasks[i].title << "|" << "Description: " << tasks[i].descrip << endl;
-                }
-            }
-        }
-
-//iterate through and print all items for a specific class
-    }
-
-    vector<node> smallClassSort(string courseCode) {
-        vector<node> newTask;
+    void classSort(string courseCode) {
         for(unsigned int i = 0; i < totalTask; i++ )
         {
             if (tasks[i].course == courseCode) {
-                newTask.push_back(tasks[i]);
+                cout << "Date: " << tasks[i].date << "|" << "Class: " << tasks[i].course << "|" << "Assignment: ";
+                cout << tasks[i].title << "|" << "Description: " << tasks[i].descrip << endl;
             }
         }
         //iterate through and print all items for a specific class
     }
-
     //display based by class
-
-    vector<string> classBros() {
+    void classBros() {
         vector<string> courses;//return this?
         int counter = 0;
         for (unsigned int i = 0; i < totalTask; i++) {
             if (i == 0)
                 courses.push_back(tasks[i].course);
 
-            else if (tasks[i].course == courses[counter])
+            if (tasks[i].course == courses[counter])
                 continue;
-            else {
+            else
                 courses.push_back(tasks[i].course);
-                counter++;
-            }
-
+            counter++;
 
 //HI
         }
-        //sort(courses.begin(), courses.end(), gee);
-
-            return courses;
+        for (unsigned int i = 0; i < courses.size(); i++)
+            cout<< courses[i] << endl;
     }
 };
