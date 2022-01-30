@@ -81,7 +81,7 @@ public:
 
     
         //sort nodes by date (group) - finish later turns map all into one vector Done
-    vector<node> dateSortTotal(map<unsigned int, vector<node>> mapOTasks){
+    vector<node> dateSortTotal(map<string, vector<node>> mapOTasks){
         
         vector<node> finalSortTasks;
         
@@ -95,13 +95,20 @@ public:
         
         return finalSortTasks;
     }
+
+    void classSortf(vector<node>& _tasks){
+        vector<node>* helper = & _tasks;
+        vector<node> newTasks = dateSortTotal ( dateSort(helper));
+        tasks.clear();
+        tasks = newTasks;
+    }
     
-    map<unsigned int, vector<node>> dateSort(vector<node>* _tasks) {
+    map<string, vector<node>> dateSort(vector<node>* _tasks) {
 
         //creates a map with date  < 1/11 , <Hwk1 , hwk2 , etc >
-        map<unsigned int, vector<node>> dailyTasks;
-        for (auto iter = _tasks->begin(); iter!=_tasks->end(); ++iter){
-            unsigned int g = iter->date;
+        map<string, vector<node>> dailyTasks;
+        for (auto iter = _tasks->rbegin(); iter!=_tasks->rend(); ++iter){
+           string g = iter->course;
            dailyTasks[g].push_back(*iter);
         }
 
@@ -316,6 +323,8 @@ public:
 
     vector<node> smallClassSort(string courseCode) {
         vector<node> newTask;
+
+
         for(unsigned int i = 0; i < totalTask; i++ )
         {
             if (tasks[i].course == courseCode) {
@@ -328,15 +337,14 @@ public:
     }
 
     //display based by class
-
+bool compareFunction (std::string a, std::string b) {return a<b;}
     vector<string> classBros() {
         vector<string> courses;//return this?
         int counter = 0;
-        for (unsigned int i = 0; i < totalTask; i++) {
+        for (unsigned int i = 0; i < tasks.size(); i++) {
             if (i == 0)
                 courses.push_back(tasks[i].course);
-
-            else if (tasks[i].course == courses[counter])
+            if (tasks[i].course == courses[counter])
                 continue;
             else {
                 courses.push_back(tasks[i].course);
@@ -346,7 +354,10 @@ public:
 //HI
         }
         //sort(courses.begin(), courses.end(), gee);
-
+        for (int i = 0; i< courses.size();i++)
+        {
+            cout<<courses[i];
+        }
         return courses;
     }
 };

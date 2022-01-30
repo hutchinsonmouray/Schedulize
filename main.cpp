@@ -21,6 +21,7 @@ using namespace std;
 int main() {
 
     //if using main to test plz tag your work and commit/push often
+    //??
     Schedulize obj;
     obj.tasks;
     ifstream file("Schedulize your Calender!.txt");
@@ -85,24 +86,9 @@ int main() {
     obj.endDate = read;
 
 
-
-
-
-
-
-
-
-
-    //Schedulize obj;
-   // obj.tasks; //vector of nodes
-
-    //I hard coded some task, try and sort them
-    //  obj.calReader(); // testing function -J
- //   obj.dateSort();// -J
-      obj.showTasks(obj.tasks); //- M
-  // obj.classBros();
   if (obj.Class)
-    obj.classSort();//- G
+    obj.classSortf(obj.tasks);//- G
 
     obj.exportToCSV(); //-M
+   // obj.classBros();
 }
