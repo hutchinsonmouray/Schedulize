@@ -315,6 +315,7 @@ public:
                 newTask.push_back(tasks[i]);
             }
         }
+        return newTask;
         //iterate through and print all items for a specific class
         return newTask;
     }
