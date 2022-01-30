@@ -275,33 +275,59 @@ public:
 
     //sort by length (how long it'll take);
 
-    void classSort(string courseCode) {
+    //sort by length (how long it'll take);
+    vector<node> classSort() {
+        vector<node> newTask;
+
+        for(unsigned int j = 0; j < classBros().size(); j++)
+        {
+            for (unsigned int i = 0; i < tasks.size(); i++)
+            {
+                if (tasks[i].course == classBros()[j])
+                {
+                    newTask.push_back(tasks[i]);
+                    //cout << "Date: " << tasks[i].date << "|" <<
+                    //cout<< "Class: " << newTask[i].course;
+                    // cout << tasks[i].title << "|" << "Description: " << tasks[i].descrip << endl;
+                }
+            }
+        }
+
+//iterate through and print all items for a specific class
+    }
+
+    vector<node> smallClassSort(string courseCode) {
+        vector<node> newTask;
         for(unsigned int i = 0; i < totalTask; i++ )
         {
             if (tasks[i].course == courseCode) {
-                cout << "Date: " << tasks[i].date << "|" << "Class: " << tasks[i].course << "|" << "Assignment: ";
-                cout << tasks[i].title << "|" << "Description: " << tasks[i].descrip << endl;
+                newTask.push_back(tasks[i]);
             }
         }
         //iterate through and print all items for a specific class
     }
+
     //display based by class
-    void classBros() {
+
+    vector<string> classBros() {
         vector<string> courses;//return this?
         int counter = 0;
         for (unsigned int i = 0; i < totalTask; i++) {
             if (i == 0)
                 courses.push_back(tasks[i].course);
 
-            if (tasks[i].course == courses[counter])
+            else if (tasks[i].course == courses[counter])
                 continue;
-            else
+            else {
                 courses.push_back(tasks[i].course);
-            counter++;
+                counter++;
+            }
+
 
 //HI
         }
-        for (unsigned int i = 0; i < courses.size(); i++)
-            cout<< courses[i] << endl;
+        //sort(courses.begin(), courses.end(), gee);
+
+        return courses;
     }
 };
