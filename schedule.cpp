@@ -6,7 +6,8 @@
 #include "schedule.h"
 #include "visual.h"
 #include <map>
-#include <map>
+#include <ctype.h>
+#include <stdio.h>
 #include<algorithm>
 using namespace std;
 //hi its gg
@@ -120,9 +121,15 @@ public:
         getline(stD, sMM, '/');
         getline(endD, eDD, '/');
         getline(endD, eMM, '/');
-        finSt = stoi(sDD) + stoi(sMM)*10;
-        finEnd = stoi(eDD) + stoi(eMM)*10;
-
+        try
+        {
+            finSt = stoi(sDD) + stoi(sMM)*10;
+            finEnd = stoi(eDD) + stoi(eMM)*10;
+        }
+        catch(const invalid_argument& e)
+        {
+        }
+        
         std::ofstream file("Schedulize_toDo.csv");
         for (auto iter = tasks.begin(); iter!= tasks.end();iter++) {
             if (!Zoom && iter->descrip.find("Zoom") != string::npos)
